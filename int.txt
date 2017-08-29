@@ -1,0 +1,39 @@
+package erejestracja.podmiot;
+import java.rmi.RemoteException;
+// Interfejs web serwisu dotycz�cego obs�ugi podmiot�w i rejestracji.
+public interface WSPodmiotRejestracjaIF extends java.rmi.Remote{
+// Pokazuje informacje o danym podmiocie.
+// parametr: nrPeselRegon - numer PESEL podmiotu lub numer REGON firmy.
+// return: Podmiot - obiekt transportowy: informacje o danym podmiocie.
+public Podmiot pokazPodmiot(long nrPeselRegon) throws RemoteException;
+// Dodaje nowy podmiot.
+// parametr: nowyPodmiot - obiekt transportowy: informacje o nowym podmiocie.
+// return: true - je�li podmiot dodano, false - je�li nie dodano.
+public boolean dodajPodmiot(Podmiot nowyPodmiot) throws RemoteException;
+// Usuwa dany podmiot.
+// parametr: nrPeselRegon - numer PESEL osoby fizycznej lub numer REGON firmy.
+// return: true - je�li podmiot usuni�to, false - je�li nie usuni�to.
+public boolean usunPodmiot(long nrPeselRegon) throws RemoteException;
+// Modyfikuje dany podmiot.
+// parametr: podmiot - obiekt transportowy: informacje o modyfikowanym podmiocie.
+// return: true - je�li podmiot zmodyfikowano, false - je�li nie zmodyfikowano.
+public boolean modyfikujPodmiot(Podmiot podmiot) throws RemoteException;
+// Pokazuje zarejestrowane podmioty na dany dow�d rejestracyjny.
+// parametr: nrDowoduRejestracyjnego - numer dowodu rejestracyjnego.
+// return: PodmiotRejestracja[] - tablica obiekt�w transportowych: informacje o
+// wszystkich zarejestrowanych podmiotach.
+public PodmiotRejestracja[] pokazZarejestrowanePodmioty(
+String nrDowoduRejestracyjnego) throws RemoteException;
+// Nowa rejestracja podmiotu na dany dow�d rejestracyjny.
+// parametr: nrDowoduRejestracyjnego - numer dowodu rejestracyjnego.
+// parametr: nrPeselRegon - numer PESEL podmiotu lub numer REGON firmy.
+// parametr: czyWlasciciel - czy dany podmiot jest w�a�cicielem pojazdu.
+// return: true - je�li zarejestrowano podmiot, false - je�li nie zarejestrowano.
+public boolean zarejestrujNowyPodmiot(String nrDowoduRejestracyjnego,
+long nrPeselRegon, boolean czyWlasciciel) throws RemoteException;
+// Usuwa wi�zanie pomi�dzy danym podmiotem, a dowodem rejestracyjnym.
+// parametr: nrDowoduRejestracyjnego - numer dowodu rejestracyjnego.
+// parametr: nrPeselRegon - numer PESEL podmiotu lub numer REGON firmy.
+// return: true - je�li podmiot wyrejestrowano, false - je�li nie wyrejestrowano.
+public boolean wyrejestrujPodmiot(String nrDowoduRejestracyjnego,
+long nrPeselRegon) throws RemoteException;
