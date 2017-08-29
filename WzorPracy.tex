@@ -26,6 +26,8 @@
 %\usepackage{Here}
 
 \usepackage{color}
+\numberwithin{equation}{section}
+
 \definecolor{szary}{gray}{0.1}% jasnoszary
 
 % \setlength{\textwidth}{400pt}
@@ -101,20 +103,90 @@ $$VaR_{\alpha}=inf\{ x\in \mathbb{R}:P(X+x<0) <  1-\alpha \}.$$
 Intuicyjnie jest to maksymalna strata wartości portfela jaka może zostać poniesiona w czasie $t$ przy założonym poziomie ufności $\alpha$. Zauważmy, że powyższa nie jest konstruktywna - mówi jedynie jaki warunek $VaR$ musi spełniać, nie podając sposobu jej wyliczania. Opisy podstawowych algorytmów wyznaczania $VaR$ znajdują się w rozdziale 3.
 
 
-
+\newpage
 \section{Wykorzystywane oznaczenia i narzędzia matematyczne}
-Zdefiniujmy podstawowe formalizmy wykorzystywane przy algorytmach wyznaczania $VaR$. Jak zostało wspomniane we wcześniejszym rozdziale symbolem $X$ oznaczamy zmienną losową rozkładu wartości portfela...
+Zdefiniujmy podstawowe formalizmy wykorzystywane przy algorytmach wyznaczania $VaR$. 
+
+
+
+
+
+
+\subsection{Problem wyznaczania macierzy transformacji}
+Dane są $n$-elementowy wektor nieskorelowanych zmiennych losowych $X$ pochodzących ze standardowego rozkładu normalnego oraz macierz kowariancji $\Sigma$
+
+\begin{equation} 
+X=
+\begin{bmatrix}
+ x_1 \\ 
+ x_2 \\
+\vdots \\
+x_n
+\end{bmatrix}
+,\Sigma=\begin{bmatrix}
+\sigma_{11} & \sigma_{12} & \hdots & \sigma_{1n} \\ 
+\sigma_{21} & \sigma_{22} & \hdots & \sigma_{2n} \\
+\vdots & \vdots & \ddots & \vdots\\
+\sigma_{n1} & \sigma_{n2} & \hdots & \sigma_{nn}
+\end{bmatrix}.
+\end{equation} 
+Wartość oczekiwana jest  równa 0 dla każdego elementu wektora X, innymi słowy
+
+\begin{equation}
+\left \langle X \right \rangle = \vec{0},
+\end{equation} 
+a wariancja każdego elementu wektora będzie równa 1, co można zapisać jako
+
+
+\begin{equation}
+\left \langle X \cdot X^T \right \rangle = I
+\end{equation} 
+gdzie przez $I$ rozumiemy macierz jednostkową. Symbolem $Y$ oznaczmy $n$-elementowy wektor zmiennych losowych, których korelacja wyrażona przy pomocy macierzy kowariancji $\Sigma$
+
+
+\begin{equation}\label{eq:yysigma}
+\left \langle Y \cdot Y^T \right \rangle = \Sigma.
+\end{equation} 
+Zadaniem jest znalezienie macierzy transformacji $C$ takiej, że spełniona jest równość
+
+\begin{equation}\label{eq:ycx}
+Y=C \cdot X.
+\end{equation} 
+W równaniu \eqref{eq:yysigma} można zastosować podstawienie \eqref{eq:ycx}. Mamy wówczas
+
+\begin{equation}
+\Sigma = \left \langle Y \cdot Y^T \right \rangle = \left \langle C \cdot X \cdot (C \cdot X)^T \right \rangle =
+\left \langle C \cdot X \cdot X^T \cdot C^T \right \rangle =  C \cdot \left \langle X \cdot X^T \right \rangle \cdot C^T =
+C \cdot I \cdot C^T = C \cdot C^T.
+\end{equation} 
+Należy zatem wyznaczyć macierz $C$ spełniającą równość $C \cdot C^T = \Sigma$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \section{Omówienie podstawowych metod}
-Istnieją trzy podstawowe metody obliczania $VaR$: metoda kowariancji, metoda symulacji historycznej oraz metoda symulacji Monte Carlo. Ta ostatnia wymaga największego nakładu mocy obliczeniowej.
+Istnieją trzy podstawowe metody obliczania $VaR$: metoda wariancji-kowariancji, metoda symulacji historycznej oraz metoda symulacji Monte Carlo. Ta ostatnia wymaga największego nakładu mocy obliczeniowej.
 
 \newpage
-
-
-
-
-
 
 
 %OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
@@ -128,8 +200,9 @@ Zacznijmy rozważania od portfela składającego się tylko z jednej pozycji, cz
 
 
 
-
-$$\Phi_{\mu,\sigma^{2}}^{-1}(\alpha)=\mu+\sigma \sqrt{2} erf^{-1}(2\alpha-1)$$
+\begin{equation} 
+\Phi_{\mu,\sigma^{2}}^{-1}(\alpha)=\mu+\sigma \sqrt{2} erf^{-1}(2\alpha-1)
+\end{equation} 
 gdzie $erf^{-1}$ jest odwrotnością funkcji błędu. Korzystając z początkowego założenia o zerowej średniej rozkładu mamy
 $$\Phi_{\mu=0,\sigma^{2}}^{-1}(\alpha)=\sigma \sqrt{2} erf^{-1}(2\alpha-1)$$
 
@@ -185,17 +258,17 @@ $$\mu=\begin{bmatrix}
 Ze względu na początkowe założenia wektor $\mu$ będzie tutaj wektorem zerowym. Korzystając z własności wielowymiarowego rozkładu normalnego możemy obliczyć wariancję rozkładu zmian wartości całego portfela 
 
 
-$$ \sigma_{Portfela}^2 = V^T  \times \Sigma \times V =  \begin{bmatrix}
+$$ \sigma_{Portfela}^2 = V^T  \cdot \Sigma \cdot V =  \begin{bmatrix}
  v_1 & v_2 & \hdots & v_n
 \end{bmatrix} 
-\times
+\cdot
 \begin{bmatrix}
 \sigma_{11} & \sigma_{12} & \hdots & \sigma_{1n} \\ 
 \sigma_{21} & \sigma_{22} & \hdots & \sigma_{2n} \\
 \vdots & \vdots & \ddots & \vdots\\
 \sigma_{n1} & \sigma_{n2} & \hdots & \sigma_{nn}
 \end{bmatrix}  
-\times
+\cdot
 \begin{bmatrix}
  v_1 \\ 
  v_2 \\
@@ -213,7 +286,11 @@ $$VaR = (\sum_{i=1}^{n}v_i) \cdot VaR^{rel}.$$.
 
 
 
+\subsection{Metoda symulacji historycznej}
 
+
+
+Metoda symulacji historycznej nie zakłada normalności rozkładu zmian cen, w ogóle nie są podejmowane jakiekolwiek wstępne założenia co do tego rozkładu. Rozkład ten opiera się wyłącznie na danych historycznych. Algorytm jako dane wejściowe przyjmuje względne zmiany cen aktywów, tworzy szereg wartości portfela. Mając szereg wartości portfela tworzymy szereg różnic pomiędzy wartością portfela każdego dnia a początkową wartością portfela. Szereg ten sortujemy rosnąco. Z tego szeregu wyznaczając odpowiedni (na podstawie założonego poziomu ufności) kwantyl otrzymujemy $VaR$.\\
 
 
 
@@ -279,7 +356,125 @@ $$VaR = (\sum_{i=1}^{n}v_i) \cdot VaR^{rel}.$$.
 
 
 
-\section{Wstęp}      %* oznacza, że ta sekcja nie będzie numerowana   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Old Wstęp}      %* oznacza, że ta sekcja nie będzie numerowana   
 
 
 
@@ -418,7 +613,7 @@ Dzięki hierarchiczności aktorów i ich specjalnym typie Supervisor (kierownik)
 Nie należy zapominać o fakcie że język Akka powstał na platformie JVM, bogatej w biblioteki i narzędzia (które można wykorzystać w Scali pomimo że same zostały napisane w innym języku platformy JVM).\\
 
 \newpage
-\section{Analiza problemu}
+\section{Old Analiza problemu}
 
 
 
@@ -440,7 +635,7 @@ Po drugie symulacja historyczna jest dokładniejsza, bo korzysta z historycznych
 
 \newpage
 
-\section{Projekt systemu}
+\section{Old Projekt systemu}
 
 
 \subsection{System jako eksperyment badający przyśpieszenie obliczeń}
@@ -528,7 +723,7 @@ Obiekt Wallet jest następnie sklonowany ( użycie do wysłania tej samej refere
 
 
 
-\section{Implementacja sytemu}
+\section{Old Implementacja sytemu}
 
 \subsection{Użyte technologie}
 
