@@ -338,6 +338,7 @@ Algorytm zaczyna pracę od wygenerowania dla każdego instrumentu w portfelu sze
 
 
 \begin{equation} \label{eq:ynk}
+Y(k)=
     \begin{bmatrix}
  Y_1(k) \\ 
 \vdots \\
@@ -369,13 +370,25 @@ X_n(k)
  \begin{equation}
      Y_j(k)=\sum_{i=1}^{n}P_i[j] \cdot \sqrt{\Delta_j}\cdot X_j(k).
  \end{equation}
-Zauważmy, że obliczenie każdego elementu wektora \eqref{eq:ynk} jest ...
+Zauważmy, że każdy wektor $Y(k)$ można wyznaczyć niezależnie od pozostałych, co jest istotne z punktu widzenia przetwarzania w klastrze, ponieważ każdy węzeł klastra będzie mógł wyliczać wektory niezależnie, nie oczekując na pozostałe węzły. Choć ten fakt nie zostanie w praktyce - bo wówczas stopień rozproszenia obliczeń przyniósłby więcej strat niż korzyści - nawet pojedyncze elementy wektorów $Y(k)$ można wyznaczać niezależnie.
+Zwróćmy jeszcze uwagę na złożoność obliczeniową takiej symulacji bez zagłębiania się w szczegóły implementacji klastra. Czas wykonywania takiej symulacji zależy od dwóch parametrów: liczby instrumentów w portfelu $n$ oraz liczby symulacji $m$. Zależność od liczby symulacji jest liniowa - jest do wyznaczenia dokładnie $m$ wektorów. Zaś od liczby instrumentów zależność jest kwadratowa - należy obliczyć $n$ elementów każdego wektora a w ramach obliczania każdego takiego elementu wylicza się sumę $n$-składnikową. Złożoność asymptotyczna wynosi zatem $O(m \cdot n^2)$.
+
+
+
+\section{System Akka}
+Warto wyjaśnić dlaczego właśnie system Akka będzie odpowiednim narzędziem do stworzenia takiego klastra. Akka, napisana w języku Scala opiera się na modelu aktorów stworzonym do obliczeń współbieżnych i rozproszonych. Aktorzy są podstawowymi jednostkami modelu aktorów. Ze względów bezpieczeństwa aktorzy nie komunikują się w inny sposób jak poprzez wysyłanie wiadomości. Po odebraniu wiadomości aktor może:
+
+\begin{itemize}
+  \item stworzyć skończoną liczbę nowych aktorów,
+	\item wysłać skończoną liczbę wiadomości do innych aktorów,
+	\item zdeterminować swoje zachowanie gdy nadejdzie następna wiadomość.
+
+\end{itemize}
+Tylko te trzy możliwości wydają się być ograniczające, jednak ta prostota zapewnia bezpieczeństwo i łatwość tworzenia aplikacji. 
+Dodatkowo Akka jest wysoce zoptymalizowana zarówno jeśli chodzi o przesyłanie wiadomości pomiędzy aktorami (do 50 mln. wiadomości / sekundę na pojedynczej maszynie), jak i oszczędność pamięci (1 GB pamięci pomieści 2,5 mln. aktorów). 
 
 
 \newpage
-\section{System Akka}
-
-
 \section{Projekt aplikacji}
 
 
