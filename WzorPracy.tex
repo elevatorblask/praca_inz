@@ -94,7 +94,7 @@
 
 \pagestyle{headings}  %Zaczynamy właściwą część dokumentu
 
-\section{Wstęp ogólny}
+\section{Wstęp ogólny} 
 Celem realizowanej pracy inżynierskiej będzie zaprojektowanie i zaimplementowanie klastra obliczeniowego, który będzie wyliczał Wartość Zagrożoną ryzykiem (ang. Value at Risk, $VaR$) metodą symulacji Monte Carlo. System Akka jest efektywnym narzędziem do implementacji obliczeń rozproszonych na platformie JVM. Oparty on jest na modelu aktorów, ten model współbieżności jest asynchroniczny i polega na przesyłaniu wiadomości pomiędzy podstawowymi jednostkami obliczeniowymi - aktorami. W tym modelu żadne dane nie są współdzielone, a zmienne synchronizacyjne takie jak mutexy czy semafory nie są potrzebne. W systemie Akka aktorzy mogą być wykonywani zarówno w obrębie jednej, jak i wielu maszyn bez ingerencji w kod źródłowy samych aktorów. Dodatkową cechą tego systemu jest hierarchiczność samych aktorów - każdy aktor posiada jednego aktora-rodzica który nadzoruje jego pracę. Model aktorów jak i system Akka zostaną bardziej szczegółowo omówione w rozdziale 4. 
 
 Value at Risk jest miarą ryzyka inwestycyjnego wyliczaną dla zadanego przedziału czasowego $t$. Może być wyznaczana dla pojedynczych instrumentów finansowych (np. akcje, obligacje, kontrakty terminowe) jak i dla całych portfeli składających się z tychże instrumentów. Niech $X$ - zmienna losowa oznaczająca wartość portfela po upływie czasu $t$ oraz niech $\alpha$ - założony poziom ufności. Mamy
@@ -111,7 +111,7 @@ Zdefiniujmy podstawowe formalizmy wykorzystywane przy algorytmach wyznaczania $V
 
 
 
-\subsection{Problem wyznaczania macierzy transformacji}
+\subsection{Problem wyznaczania macierzy transformacji} \label{mtransformacji}
 Dane są $n$-elementowy wektor nieskorelowanych zmiennych losowych $X$ pochodzących ze standardowego rozkładu normalnego oraz macierz kowariancji $\Sigma$
 
 \begin{equation} 
@@ -169,15 +169,7 @@ W przejściu oznaczonym znakiem $(*)$ skorzystaliśmy z faktu, że transponowana
 
 
 \begin{equation}\label{eq:cpdeltafrac}
-C  =P  \Delta^{frac{1}{2}}.
-\end{equation} 
-Zauważmy, że macierz $\Delta^{frac{1}{2}}$ można wyliczyć z macierzy $\Delta$ korzystając własności potęgowania macierzy diagonalnych
-
-
-
-\begin{equation}
-\Delta^{\frac{1}{2}}=\begin{bmatrix} \sqrt{\Delta_1} &  \cdots &0 \\
-\vdots & \ddots  & \vdots \\ 0& \cdots & \sqrt{\Delta_n} \end{bmatrix}
+C  =P  \Delta^{\frac{1}{2}}.
 \end{equation} 
 
 
@@ -201,7 +193,7 @@ Zauważmy, że macierz $\Delta^{frac{1}{2}}$ można wyliczyć z macierzy $\Delta
 
 
 
-\newpage
+
 \section{Omówienie podstawowych metod}
 Istnieją trzy podstawowe metody obliczania $VaR$: metoda wariancji-kowariancji, metoda symulacji historycznej oraz metoda symulacji Monte Carlo. Ta ostatnia wymaga największego nakładu mocy obliczeniowej.
 
@@ -311,10 +303,73 @@ Metoda symulacji historycznej nie zakłada normalności rozkładu zmian cen, w o
 
 
 
+\subsection{Metoda symulacji Monte Carlo}
+
+
+Od metody symulacji historycznej  metoda symulacji Monte Carlo różni się tym, że nie posiadamy szeregów zmian cen. Generujemy je za pomocą generatora liczb pseudolosowych. Zakładamy normalność rozkładów zmian cen dla każdego z instrumentów portfelu. Implikuje to fakt, że rozkład wartości zmian cen dla całego portfela również będzie normalny, ponieważ zmiana wartości portfela jest kombinacją liniową wartości poszczególnych instrumentów. 
+
+%eeee wektor Y
+Załóżmy że w portfelu inwestycyjnym znajduje się $n$ różnych pozycji.Niech $X=\begin{bmatrix}
+ X_1 & X_2 & \hdots & X_n
+\end{bmatrix}^T $ będzie wektorem nieskorelowanych zmiennych losowych ze standardowego rozkładu normalnego. Ponadto, niech $\Sigma$ będzie macierzą kowariancji rozkładu zmian cen ustaloną na podstawie historycznych zmian cen, a $Y$ niech będzie takim wektorem zmiennym losowych o rozkładzie normalnym że jego macierzą kowariancji jest $\Sigma$. Aby wykonać symulację Monte Carlo, należy znaleźć macierz transformacji $C$, czyli macierz spełniającą równanie 
+
+\begin{equation}
+    Y=C \cdot X.
+\end{equation}
+Metoda wyznaczania takiej macierzy przedstawiona jest w rozdziale \ref{mtransformacji}. Metoda zwraca wynik w postaci iloczynu dwóch macierzy
+
+\begin{equation}
+    C=P \cdot \Delta^{\frac{1}{2}}.
+\end{equation}
+Macierze $P$ i $\Delta$ powstały jako efekt diagonalizacji macierzy $\Sigma$, tj. $\Sigma=P \cdot \Delta \cdot P^{-1}$, gdzie  $P$ jest macierzą przejścia, a $\Delta$ macierzą diagonalną. Jako że $P$ jest macierzą przejścia to możemy ją przedstawić jako macierz kolumnową, której kolumny $P_1, \hdots, P_n$ są wektorami własnymi macierzy $\Sigma$
+\begin{equation}
+    P=\begin{bmatrix} P_1 & \vdots & P_2 & \vdots  & \hdots & \vdots & P_n \end{bmatrix}.
+\end{equation}
+Wektor $P_i$ nazywamy wektorem własnym macierzy kowariancji dla instrumentu $i$, symbolem $P_{i}[j]$ oznaczamy $j$-ty element wektora własnego $P_i$. Ponadto zauważmy, że macierz $\Delta^{\frac{1}{2}}$ można wyliczyć z macierzy $\Delta$ korzystając własności potęgowania macierzy diagonalnych
 
 
 
+\begin{equation}
+\Delta^{\frac{1}{2}}=\begin{bmatrix} \sqrt{\Delta_1} &  \cdots &0 \\
+\vdots & \ddots  & \vdots \\ 0& \cdots & \sqrt{\Delta_n} \end{bmatrix}.
+\end{equation} 
+Algorytm zaczyna pracę od wygenerowania dla każdego instrumentu w portfelu szereg liczb pseudolosowych (standardowo 10000 liczb) z rozkładu normalnego o parametrach $\mu=0,\sigma^2=1$. Wprowadźmy następujące oznaczenie $X_j(k)$ - realizacja zmiennej losowej $X_j$ dla $k$-tego losowania. Innymi słowy dla instrumentu z indeksem $j$ w szeregu liczb pseudolosowych $k$-ty element będzie równy $X_j(k)$. Dla dowolnego $k \in \left \{1, \hdots, 10000 \right \} $ mamy
 
+
+
+\begin{equation} \label{eq:ynk}
+    \begin{bmatrix}
+ Y_1(k) \\ 
+\vdots \\
+Y_n(k)
+\end{bmatrix} =
+C \cdot \begin{bmatrix}
+ X_1(k) \\ 
+\vdots \\
+X_n(k)
+\end{bmatrix} =
+    \begin{bmatrix}
+    \begin{bmatrix}P_1[1] \\ \vdots \\ P_1[n]\end{bmatrix} &
+    \hdots &
+    \begin{bmatrix}P_n[1] \\ \vdots \\ P_n[n]\end{bmatrix} 
+\end{bmatrix}
+    \cdot
+\begin{bmatrix} \sqrt{\Delta_1} &  \cdots &0 \\
+\vdots & \ddots  & \vdots \\ 0& \cdots & \sqrt{\Delta_n} \end{bmatrix}
+    \cdot 
+\begin{bmatrix}
+ X_1(k) \\ 
+\vdots \\
+X_n(k)
+\end{bmatrix}
+\end{equation}
+ Stosując wzory na mnożenie macierzy przy ustalonym wcześniej $k$, dla każdego $j \in \left \{1, \hdots, n \right \} $ mamy
+ 
+ 
+ \begin{equation}
+     Y_j(k)=\sum_{i=1}^{n}P_i[j] \cdot \sqrt{\Delta_j}\cdot X_j(k).
+ \end{equation}
+Zauważmy, że obliczenie każdego elementu wektora \eqref{eq:ynk} jest ...
 
 
 \newpage
