@@ -1,0 +1,323 @@
+<svg version="1.1" x="0" y="0" id="j4dyd5zq" diagram-revision="25" width="764" height="685.75" enable-background="new" xmlns="http://www.w3.org/2000/svg" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs/>
+  <g id="j4dqfjjf-ko110" transform="translate(275,32.89999999999998)">
+    <desc>root/abstractShapes/hRectangle?version=4&amp;author=Cinergix</desc>
+    <g id="image" transform="scale(1.0625,1.6661114692687988)">
+      \
+      <rect vector-effect="non-scaling-stroke" x="0" y="0" fill="#ffffff" stroke="#003494" width="160" height="90" style="stroke:#003494;stroke-dasharray:none;fill:#ffffff;stroke-width:0.5;" stroke-width="0.5" stroke-dasharray="none"/>
+    </g>
+    <text x="0" y="0" width="53.55" height="44.75" transform="translate(58.2,5)">
+      <tspan x="5" y="15.920019531249999" style="font-family:Lato;font-size:14px;fill:#143872;">Master</tspan>
+    </text>
+  </g>
+  <g id="j4dqfjjf-ko111" transform="translate(288.75,72.89999999999998)">
+    <desc>root/abstractShapes/hRectangle?version=4&amp;author=Cinergix</desc>
+    <g id="image" transform="scale(0.875,0.444444477558136)">
+      \
+      <rect vector-effect="non-scaling-stroke" x="0" y="0" fill="#ffffff" stroke="#003494" width="160" height="90" style="stroke:#003494;stroke-dasharray:none;fill:#ffffff;stroke-width:2;" stroke-width="2" stroke-dasharray="none"/>
+    </g>
+    <text x="0" y="0" width="63.3" height="29.75" transform="translate(38.35,7.1)">
+      <tspan x="7" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#143872;">Listener</tspan>
+    </text>
+  </g>
+  <g id="j4dqfjjf-ko109" transform="translate(288.75,127.89999999999998)">
+    <desc>root/abstractShapes/hRectangle?version=4&amp;author=Cinergix</desc>
+    <g id="image" transform="scale(0.875,0.4444445073604584)">
+      \
+      <rect vector-effect="non-scaling-stroke" x="0" y="0" fill="#ffffff" stroke="#003494" width="160" height="90" style="stroke:#003494;stroke-dasharray:none;fill:#ffffff;stroke-width:2;" stroke-width="2" stroke-dasharray="none"/>
+    </g>
+    <text x="0" y="0" width="78.35" height="29.75" transform="translate(30.8,7.1)">
+      <tspan x="7" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#143872;">Forwarder</tspan>
+    </text>
+  </g>
+  <g id="j4dqfjjf-ko117" transform="translate(5,272.9)">
+    <desc>root/abstractShapes/hRectangle?version=4&amp;author=Cinergix</desc>
+    <g id="image" transform="scale(1.0625,1.055555820465088)">
+      \
+      <rect vector-effect="non-scaling-stroke" x="0" y="0" fill="#ffffff" stroke="#003494" width="160" height="90" style="stroke:#003494;stroke-dasharray:none;fill:#ffffff;stroke-width:0.5;" stroke-width="0.5" stroke-dasharray="none"/>
+    </g>
+    <text x="0" y="0" width="63.3" height="29.75" transform="translate(53.35,5)">
+      <tspan x="7" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#143872;">Listener</tspan>
+    </text>
+  </g>
+  <g id="j4dqfjjf-ko116" transform="translate(20,312.94999999999993)">
+    <desc>root/abstractShapes/hRectangle?version=4&amp;author=Cinergix</desc>
+    <g id="image" transform="scale(0.875,0.444444477558136)">
+      \
+      <rect vector-effect="non-scaling-stroke" x="0" y="0" fill="#ffffff" stroke="#003494" width="160" height="90" style="stroke:#003494;stroke-dasharray:none;fill:#ffffff;stroke-width:2;" stroke-width="2" stroke-dasharray="none"/>
+    </g>
+    <text x="0" y="0" width="57.55" height="29.75" transform="translate(41.2,7.1)">
+      <tspan x="7" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#143872;">Master</tspan>
+    </text>
+  </g>
+  <g id="j4dqfjjf-ko145" transform="translate(273.75,502.9)">
+    <desc>root/abstractShapes/hRectangle?version=4&amp;author=Cinergix</desc>
+    <g id="image" transform="scale(1.0625,1.6661114692687988)">
+      \
+      <rect vector-effect="non-scaling-stroke" x="0" y="0" fill="#ffffff" stroke="#003494" width="160" height="90" style="stroke:#003494;stroke-dasharray:none;fill:#ffffff;stroke-width:0.5;" stroke-width="0.5" stroke-dasharray="none"/>
+    </g>
+    <text x="0" y="0" width="61.3" height="29.75" transform="translate(54.35,5)">
+      <tspan x="7" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#143872;">Storage</tspan>
+    </text>
+  </g>
+  <g id="j4dqfjjf-ko146" transform="translate(288.75,542.85)">
+    <desc>root/abstractShapes/hRectangle?version=4&amp;author=Cinergix</desc>
+    <g id="image" transform="scale(0.875,0.444444477558136)">
+      \
+      <rect vector-effect="non-scaling-stroke" x="0" y="0" fill="#ffffff" stroke="#003494" width="160" height="90" style="stroke:#003494;stroke-dasharray:none;fill:#ffffff;stroke-width:2;" stroke-width="2" stroke-dasharray="none"/>
+    </g>
+    <text x="0" y="0" width="78.35" height="29.75" transform="translate(30.8,7.1)">
+      <tspan x="7" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#143872;">Forwarder</tspan>
+    </text>
+  </g>
+  <g id="j4dqfjjf-ko147" transform="translate(288.75,597.85)">
+    <desc>root/abstractShapes/hRectangle?version=4&amp;author=Cinergix</desc>
+    <g id="image" transform="scale(0.875,0.4444445073604584)">
+      \
+      <rect vector-effect="non-scaling-stroke" x="0" y="0" fill="#ffffff" stroke="#003494" width="160" height="90" style="stroke:#003494;stroke-dasharray:none;fill:#ffffff;stroke-width:2;" stroke-width="2" stroke-dasharray="none"/>
+    </g>
+    <text x="0" y="0" width="63.3" height="29.75" transform="translate(38.35,7.1)">
+      <tspan x="7" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#143872;">Listener</tspan>
+    </text>
+  </g>
+  <g id="j4dqfjjf-ko207" transform="translate(273.75,272.9)">
+    <desc>root/abstractShapes/hRectangle?version=4&amp;author=Cinergix</desc>
+    <g id="image" transform="scale(1.0625,1.055555820465088)">
+      \
+      <rect vector-effect="non-scaling-stroke" x="0" y="0" fill="#ffffff" stroke="#003494" width="160" height="90" style="stroke:#003494;stroke-dasharray:none;fill:#ffffff;stroke-width:0.5;" stroke-width="0.5" stroke-dasharray="none"/>
+    </g>
+    <text x="0" y="0" width="106.5" height="29.75" transform="translate(31.75,5)">
+      <tspan x="7" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#143872;">Child (multiple)</tspan>
+    </text>
+  </g>
+  <g id="j4dqfjjf-ko206" transform="translate(288.75,312.9)">
+    <desc>root/abstractShapes/hRectangle?version=4&amp;author=Cinergix</desc>
+    <g id="image" transform="scale(0.875,0.444444477558136)">
+      \
+      <rect vector-effect="non-scaling-stroke" x="0" y="0" fill="#ffffff" stroke="#003494" width="160" height="90" style="stroke:#003494;stroke-dasharray:none;fill:#ffffff;stroke-width:2;" stroke-width="2" stroke-dasharray="none"/>
+    </g>
+    <text x="0" y="0" width="61.3" height="29.75" transform="translate(39.35,7.1)">
+      <tspan x="7" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#143872;">Storage</tspan>
+    </text>
+  </g>
+  <g id="j4dqfjjf-ko211" transform="translate(570,272.9)">
+    <desc>root/abstractShapes/hRectangle?version=4&amp;author=Cinergix</desc>
+    <g id="image" transform="scale(1.0625,1.6661114692687988)">
+      \
+      <rect vector-effect="non-scaling-stroke" x="0" y="0" fill="#ffffff" stroke="#003494" width="160" height="90" style="stroke:#003494;stroke-dasharray:none;fill:#ffffff;stroke-width:0.5;" stroke-width="0.5" stroke-dasharray="none"/>
+    </g>
+    <text x="0" y="0" width="78.35" height="29.75" transform="translate(45.8,5)">
+      <tspan x="7" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#143872;">Forwarder</tspan>
+    </text>
+  </g>
+  <g id="j4dqfjjf-ko212" transform="translate(585,312.9)">
+    <desc>root/abstractShapes/hRectangle?version=4&amp;author=Cinergix</desc>
+    <g id="image" transform="scale(0.875,0.444444477558136)">
+      \
+      <rect vector-effect="non-scaling-stroke" x="0" y="0" fill="#ffffff" stroke="#003494" width="160" height="90" style="stroke:#003494;stroke-dasharray:none;fill:#ffffff;stroke-width:2;" stroke-width="2" stroke-dasharray="none"/>
+    </g>
+    <text x="0" y="0" width="45.65" height="29.75" transform="translate(47.15,7.1)">
+      <tspan x="7" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#143872;">Child</tspan>
+    </text>
+  </g>
+  <g id="j4dqfjjf-ko210" transform="translate(585,367.85)">
+    <desc>root/abstractShapes/hRectangle?version=4&amp;author=Cinergix</desc>
+    <g id="image" transform="scale(0.875,0.4444445073604584)">
+      \
+      <rect vector-effect="non-scaling-stroke" x="0" y="0" fill="#ffffff" stroke="#003494" width="160" height="90" style="stroke:#003494;stroke-dasharray:none;fill:#ffffff;stroke-width:2;" stroke-width="2" stroke-dasharray="none"/>
+    </g>
+    <text x="0" y="0" width="61.3" height="29.75" transform="translate(39.35,7.1)">
+      <tspan x="7" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#143872;">Storage</tspan>
+    </text>
+  </g>
+  <g id="Connector-j4dqfjjf-ko234" transform="translate(-325,-262.1)">
+    <g id="graphics">
+      <path d="M 415 535 L 415 465 L 685 465 L 685 445 " fill="none" stroke="#003494" stroke-width="0.5" mask="url(#TextboxMask-Connector-j4dqfjjf-ko234)"/>
+    </g>
+    <g id="toIcon" transform="translate(685,445)">
+      <metadata id="metadata3277">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3273" showgrid="true" aab:zoom="45.254834" aab:cx="5.3422801" aab:cy="5.5253458" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 -8,8 8,8 " id="polygon3271" transform="translate(0.00396088,0.7512019)" style="stroke:#003494;fill:#ffffff;stroke-width:0.5;" stroke="#003494" stroke-width="0.5"/>
+    </g>
+    <text x="0" y="0" width="38" height="25.75" transform="translate(506.25,452.1)">
+      <tspan x="4.5" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#143872;font-style:italic;">Start</tspan>
+    </text>
+    <mask id="TextboxMask-Connector-j4dqfjjf-ko234" maskUnits="userSpaceOnUse" x="0" y="0" width="1500" height="1500">
+      <rect x="0" y="0" width="1500" height="1500" style="fill:white;"/>
+      <rect x="0" y="0" width="38" height="25.75" transform="translate(506.25,452.1)"/>
+    </mask>
+  </g>
+  <g id="Connector-j4dqfjjf-ko237" transform="translate(-325,-262.1)">
+    <g id="graphics">
+      <path d="M 600 370 L 530 370 L 530 280 L 685 280 L 685 295 " fill="none" stroke="#003494" stroke-width="0.5" mask="url(#TextboxMask-Connector-j4dqfjjf-ko237)"/>
+    </g>
+    <g id="fromIcon" transform="translate(600,370) rotate(90)">
+      <metadata id="metadata3277">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3273" showgrid="true" aab:zoom="45.254834" aab:cx="5.3422801" aab:cy="5.5253458" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 -8,8 8,8 " id="polygon3271" transform="translate(0.00396088,0.7512019)" style="stroke:#003494;fill:#ffffff;stroke-width:0.5;" stroke="#003494" stroke-width="0.5"/>
+    </g>
+    <text x="0" y="0" width="78.95" height="25.75" transform="translate(508.55,267.1)">
+      <tspan x="4.5" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#4b4b4b;">COME_ON</tspan>
+    </text>
+    <mask id="TextboxMask-Connector-j4dqfjjf-ko237" maskUnits="userSpaceOnUse" x="0" y="0" width="1500" height="1500">
+      <rect x="0" y="0" width="1500" height="1500" style="fill:white;"/>
+      <rect x="0" y="0" width="78.95" height="25.75" transform="translate(508.55,267.1)"/>
+    </mask>
+  </g>
+  <g id="Connector-j4dqfjjf-ko240" transform="translate(-325,-262.1)">
+    <g id="graphics">
+      <path d="M 770 370 L 980 370 L 980 535 " fill="none" stroke="#003494" stroke-width="0.5" mask="url(#TextboxMask-Connector-j4dqfjjf-ko240)"/>
+    </g>
+    <g id="toIcon" transform="translate(980,535) rotate(180)">
+      <metadata id="metadata3277">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3273" showgrid="true" aab:zoom="45.254834" aab:cx="5.3422801" aab:cy="5.5253458" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 -8,8 8,8 " id="polygon3271" transform="translate(0.00396088,0.7512019)" style="stroke:#003494;fill:#ffffff;stroke-width:0.5;" stroke="#003494" stroke-width="0.5"/>
+    </g>
+    <text x="0" y="0" width="41.9" height="25.75" transform="translate(940.45,357.1)">
+      <tspan x="4.75" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#4b4b4b;">Input</tspan>
+    </text>
+    <mask id="TextboxMask-Connector-j4dqfjjf-ko240" maskUnits="userSpaceOnUse" x="0" y="0" width="1500" height="1500">
+      <rect x="0" y="0" width="1500" height="1500" style="fill:white;"/>
+      <rect x="0" y="0" width="41.9" height="25.75" transform="translate(940.45,357.1)"/>
+    </mask>
+  </g>
+  <g id="Connector-j4ntcf43-ko17" transform="translate(-325,-262.1)">
+    <g id="graphics">
+      <path d="M 685 295 L 685 275 L 1085 275 L 1085 610 L 1065 610 " fill="none" stroke="#003494" stroke-width="0.5" mask="url(#TextboxMask-Connector-j4ntcf43-ko17)"/>
+    </g>
+    <g id="toIcon" transform="translate(1065,610) rotate(-90)">
+      <metadata id="metadata3277">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3273" showgrid="true" aab:zoom="45.254834" aab:cx="5.3422801" aab:cy="5.5253458" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 -8,8 8,8 " id="polygon3271" transform="translate(0.00396088,0.7512019)" style="stroke:#003494;fill:#ffffff;stroke-width:0.5;" stroke="#003494" stroke-width="0.5"/>
+    </g>
+    <text x="0" y="0" width="62.85" height="25.75" transform="translate(1011.9,262.1)">
+      <tspan x="4.75" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#4b4b4b;">Progress</tspan>
+    </text>
+    <mask id="TextboxMask-Connector-j4ntcf43-ko17" maskUnits="userSpaceOnUse" x="0" y="0" width="1500" height="1500">
+      <rect x="0" y="0" width="1500" height="1500" style="fill:white;"/>
+      <rect x="0" y="0" width="62.85" height="25.75" transform="translate(1011.9,262.1)"/>
+    </mask>
+  </g>
+  <g id="Connector-j4ntcf43-ko18" transform="translate(-325,-262.1)">
+    <g id="graphics">
+      <path d="M 895 610 L 870 610 L 870 840 L 768.75 840 " fill="none" stroke="#003494" stroke-width="0.5" mask="url(#TextboxMask-Connector-j4ntcf43-ko18)"/>
+    </g>
+    <g id="toIcon" transform="translate(768.75,840) rotate(-90)">
+      <metadata id="metadata3277">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3273" showgrid="true" aab:zoom="45.254834" aab:cx="5.3422801" aab:cy="5.5253458" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 -8,8 8,8 " id="polygon3271" transform="translate(0.00396088,0.7512019)" style="stroke:#003494;fill:#ffffff;stroke-width:0.5;" stroke="#003494" stroke-width="0.5"/>
+    </g>
+    <text x="0" y="0" width="119.25" height="25.75" transform="translate(810.35,750.25)">
+      <tspan x="3" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#4b4b4b;">forward (Progress)</tspan>
+    </text>
+    <mask id="TextboxMask-Connector-j4ntcf43-ko18" maskUnits="userSpaceOnUse" x="0" y="0" width="1500" height="1500">
+      <rect x="0" y="0" width="1500" height="1500" style="fill:white;"/>
+      <rect x="0" y="0" width="119.25" height="25.75" transform="translate(810.35,750.25)"/>
+    </mask>
+  </g>
+  <g id="Connector-j4ntcf43-ko19" transform="translate(-325,-262.1)">
+    <g id="graphics">
+      <path d="M 895 610 L 865 610 L 865 515 L 683.75 515 L 683.75 535 " fill="none" stroke="#003494" stroke-width="0.5" mask="url(#TextboxMask-Connector-j4ntcf43-ko19)"/>
+    </g>
+    <g id="toIcon" transform="translate(683.75,535) rotate(180)">
+      <metadata id="metadata3277">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3273" showgrid="true" aab:zoom="45.254834" aab:cx="5.3422801" aab:cy="5.5253458" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 -8,8 8,8 " id="polygon3271" transform="translate(0.00396088,0.7512019)" style="stroke:#003494;fill:#ffffff;stroke-width:0.5;" stroke="#003494" stroke-width="0.5"/>
+    </g>
+    <text x="0" y="0" width="101.8" height="25.75" transform="translate(757.05,502.1)">
+      <tspan x="4.75" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#4b4b4b;">forward (Input)</tspan>
+    </text>
+    <mask id="TextboxMask-Connector-j4ntcf43-ko19" maskUnits="userSpaceOnUse" x="0" y="0" width="1500" height="1500">
+      <rect x="0" y="0" width="1500" height="1500" style="fill:white;"/>
+      <rect x="0" y="0" width="101.8" height="25.75" transform="translate(757.05,502.1)"/>
+    </mask>
+  </g>
+  <g id="Connector-j4ntcf43-ko20" transform="translate(-325,-262.1)">
+    <g id="graphics">
+      <path d="M 683.75 915 L 683.75 935 L 415 935 L 415 630 " fill="none" stroke="#003494" stroke-width="0.5" mask="url(#TextboxMask-Connector-j4ntcf43-ko20)"/>
+    </g>
+    <g id="toIcon" transform="translate(415,630)">
+      <metadata id="metadata3277">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3273" showgrid="true" aab:zoom="45.254834" aab:cx="5.3422801" aab:cy="5.5253458" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 -8,8 8,8 " id="polygon3271" transform="translate(0.00396088,0.7512019)" style="stroke:#003494;fill:#ffffff;stroke-width:0.5;" stroke="#003494" stroke-width="0.5"/>
+    </g>
+    <text x="0" y="0" width="62.35" height="25.75" transform="translate(383.8,914)">
+      <tspan x="4.5" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#4b4b4b;">Progress</tspan>
+    </text>
+    <mask id="TextboxMask-Connector-j4ntcf43-ko20" maskUnits="userSpaceOnUse" x="0" y="0" width="1500" height="1500">
+      <rect x="0" y="0" width="1500" height="1500" style="fill:white;"/>
+      <rect x="0" y="0" width="62.35" height="25.75" transform="translate(383.8,914)"/>
+    </mask>
+  </g>
+  <g id="Connector-j4ntcf43-ko21" transform="translate(-325,-262.1)">
+    <g id="graphics">
+      <path d="M 598.75 840 L 578.75 840 L 578.75 585 L 598.75 585 " fill="none" stroke="#003494" stroke-width="0.5" mask="url(#TextboxMask-Connector-j4ntcf43-ko21)"/>
+    </g>
+    <g id="fromIcon" transform="translate(598.75,840) rotate(90)">
+      <metadata id="metadata3277">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3273" showgrid="true" aab:zoom="45.254834" aab:cx="5.3422801" aab:cy="5.5253458" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 -8,8 8,8 " id="polygon3271" transform="translate(0.00396088,0.7512019)" style="stroke:#003494;fill:#ffffff;stroke-width:0.5;" stroke="#003494" stroke-width="0.5"/>
+    </g>
+    <text x="0" y="0" width="64.8" height="25.75" transform="translate(546.35,699.6)">
+      <tspan x="4.75" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#4b4b4b;">DB_Save</tspan>
+    </text>
+    <mask id="TextboxMask-Connector-j4ntcf43-ko21" maskUnits="userSpaceOnUse" x="0" y="0" width="1500" height="1500">
+      <rect x="0" y="0" width="1500" height="1500" style="fill:white;"/>
+      <rect x="0" y="0" width="64.8" height="25.75" transform="translate(546.35,699.6)"/>
+    </mask>
+  </g>
+  <g id="Connector-j4oqegar-ko17" transform="translate(-325,-262.1)">
+    <g id="graphics">
+      <path d="M 895 610 L 795 610 L 795 730 L 683.75 730 L 683.75 765 " fill="none" stroke="#003494" stroke-width="0.5" mask="url(#TextboxMask-Connector-j4oqegar-ko17)"/>
+    </g>
+    <g id="toIcon" transform="translate(683.75,765) rotate(180)">
+      <metadata id="metadata3277">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3273" showgrid="true" aab:zoom="45.254834" aab:cx="5.3422801" aab:cy="5.5253458" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 -8,8 8,8 " id="polygon3271" transform="translate(0.00396088,0.7512019)" style="stroke:#003494;fill:#ffffff;stroke-width:0.5;" stroke="#003494" stroke-width="0.5"/>
+    </g>
+    <text x="0" y="0" width="65.55" height="25.75" transform="translate(762.2,690.05)">
+      <tspan x="4.75" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#4b4b4b;">DB_Load</tspan>
+    </text>
+    <mask id="TextboxMask-Connector-j4oqegar-ko17" maskUnits="userSpaceOnUse" x="0" y="0" width="1500" height="1500">
+      <rect x="0" y="0" width="1500" height="1500" style="fill:white;"/>
+      <rect x="0" y="0" width="65.55" height="25.75" transform="translate(762.2,690.05)"/>
+    </mask>
+  </g>
+  <g id="Connector-j4oqegar-ko18" transform="translate(-325,-262.1)">
+    <g id="graphics">
+      <path d="M 980 685 L 980 935 L 683.75 935 L 683.75 915 " fill="none" stroke="#003494" stroke-width="0.5" mask="url(#TextboxMask-Connector-j4oqegar-ko18)"/>
+    </g>
+    <g id="fromIcon" transform="translate(980,685)">
+      <metadata id="metadata3277">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3273" showgrid="true" aab:zoom="45.254834" aab:cx="5.3422801" aab:cy="5.5253458" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 -8,8 8,8 " id="polygon3271" transform="translate(0.00396088,0.7512019)" style="stroke:#003494;fill:#ffffff;stroke-width:0.5;" stroke="#003494" stroke-width="0.5"/>
+    </g>
+    <text x="0" y="0" width="68.85" height="25.75" transform="translate(912.45,922.1)">
+      <tspan x="4.75" y="17.92001953125" style="font-family:Lato;font-size:14px;fill:#4b4b4b;">DB_Entry</tspan>
+    </text>
+    <mask id="TextboxMask-Connector-j4oqegar-ko18" maskUnits="userSpaceOnUse" x="0" y="0" width="1500" height="1500">
+      <rect x="0" y="0" width="1500" height="1500" style="fill:white;"/>
+      <rect x="0" y="0" width="68.85" height="25.75" transform="translate(912.45,922.1)"/>
+    </mask>
+  </g>
+</svg>
