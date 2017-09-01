@@ -63,7 +63,7 @@
 \newtheorem{definition}{Definicja}[section]
 
 
-\newcommand{\JL}[1]{\marginpar{\small {\bf JL}: #1}}
+
 
 \begin{document}
 \pagestyle{empty} %To jest strona tytułowa, bez numeracji
@@ -96,17 +96,11 @@
 \pagestyle{headings}  %Zaczynamy właściwą część dokumentu
 
 \section{Wstęp ogólny} 
-Celem realizowanej pracy inżynierskiej będzie zaprojektowanie i zaimplementowanie klastra obliczeniowego, który będzie wyliczał %JL zmieniłem na male litery
-wartość zagrożoną ryzykiem (ang. Value at Risk, $VaR$) metodą symulacji Monte Carlo. System Akka jest efektywnym narzędziem do implementacji obliczeń rozproszonych na platformie JVM. Oparty on jest na modelu aktorów, ten model współbieżności jest asynchroniczny i polega na przesyłaniu wiadomości pomiędzy podstawowymi jednostkami obliczeniowymi - aktorami. W tym modelu żadne dane nie są współdzielone, a zmienne synchronizacyjne takie jak mutexy czy semafory nie są potrzebne. W systemie Akka aktorzy mogą być wykonywani zarówno w obrębie jednej, jak i wielu maszyn bez ingerencji w kod źródłowy samych aktorów. Dodatkową cechą tego systemu jest hierarchiczność samych aktorów - każdy aktor posiada jednego aktora-rodzica, który nadzoruje jego pracę. Model aktorów jak i system Akka zostaną bardziej szczegółowo omówione w rozdziale 4. 
+Celem realizowanej pracy inżynierskiej będzie zaprojektowanie i zaimplementowanie klastra obliczeniowego, który będzie wyliczał Wartość Zagrożoną ryzykiem (ang. Value at Risk, $VaR$) metodą symulacji Monte Carlo. System Akka jest efektywnym narzędziem do implementacji obliczeń rozproszonych na platformie JVM. Oparty on jest na modelu aktorów, ten model współbieżności jest asynchroniczny i polega na przesyłaniu wiadomości pomiędzy podstawowymi jednostkami obliczeniowymi - aktorami. W tym modelu żadne dane nie są współdzielone, a zmienne synchronizacyjne takie jak mutexy czy semafory nie są potrzebne. W systemie Akka aktorzy mogą być wykonywani zarówno w obrębie jednej, jak i wielu maszyn bez ingerencji w kod źródłowy samych aktorów. Dodatkową cechą tego systemu jest hierarchiczność samych aktorów - każdy aktor posiada jednego aktora-rodzica który nadzoruje jego pracę. Model aktorów jak i system Akka zostaną bardziej szczegółowo omówione w rozdziale 4. 
 
 Value at Risk jest miarą ryzyka inwestycyjnego wyliczaną dla zadanego przedziału czasowego $t$. Może być wyznaczana dla pojedynczych instrumentów finansowych (np. akcje, obligacje, kontrakty terminowe) jak i dla całych portfeli składających się z tychże instrumentów. Niech $X$ - zmienna losowa oznaczająca wartość portfela po upływie czasu $t$ oraz niech $\alpha$ - założony poziom ufności. Mamy
 $$VaR_{\alpha}=inf\{ x\in \mathbb{R}:P(X+x<0) <  1-\alpha \}.$$
-Intuicyjnie jest to maksymalna strata wartości portfela jaka może zostać poniesiona w czasie $t$ przy założonym poziomie ufności $\alpha$. Zauważmy, że powyższa
-%JL brakowało słowa definicja
-definicja
-nie jest konstruktywna - mówi jedynie, jaki warunek $VaR$ musi spełniać, nie podając sposobu
-wyznaczania. %JL zmieniłem troche ponizsze zdanie
-Podstawowe algorytmy wyznaczania $VaR$ opiszemy w rozdziale 3.
+Intuicyjnie jest to maksymalna strata wartości portfela jaka może zostać poniesiona w czasie $t$ przy założonym poziomie ufności $\alpha$. Zauważmy, że powyższa nie jest konstruktywna - mówi jedynie jaki warunek $VaR$ musi spełniać, nie podając sposobu jej wyliczania. Opisy podstawowych algorytmów wyznaczania $VaR$ znajdują się w rozdziale 3.
 
 
 \newpage
@@ -119,77 +113,62 @@ Należy zdefiniować podstawowe formalizmy wykorzystywane przy algorytmach wyzna
 
 
 \subsection{Problem wyznaczania macierzy transformacji} \label{mtransformacji}
-
-%JL zmieniłem ponizsze zdanie
-%Dane są $n$-elementowy wektor  nieskorelowanych zmiennych losowych $X$ pochodzących ze standardowego rozkładu normalnego oraz %macierz kowariancji $\Sigma$
-Dany  jest $n$-elementowy wektor $\mathbf{X}$ niezależnych zmiennych losowych $X_i$ pochodzących ze standardowego rozkładu normalnego, $X_i \sim N(0,1)$ oraz pewna macierz kowariancji $\Sigma$
-
+Dane są $n$-elementowy wektor nieskorelowanych zmiennych losowych $X$ pochodzących ze standardowego rozkładu normalnego oraz macierz kowariancji $\Sigma$
 
 \begin{equation} 
-\mathbf{X}=
+X=
 \begin{bmatrix}
-X_1 \\ 
- X_2 \\
+ x_1 \\ 
+ x_2 \\
 \vdots \\
-X_n
+x_n
 \end{bmatrix}
-, \;
-\Sigma=\begin{bmatrix}
+,\Sigma=\begin{bmatrix}
 \sigma_{11} & \sigma_{12} & \hdots & \sigma_{1n} \\ 
 \sigma_{21} & \sigma_{22} & \hdots & \sigma_{2n} \\
 \vdots & \vdots & \ddots & \vdots\\
 \sigma_{n1} & \sigma_{n2} & \hdots & \sigma_{nn}
 \end{bmatrix}.
 \end{equation} 
-Przyjmijmy, że wartość oczekiwana jest  równa $0$ dla każdego elementu wektora $\mathbf{X}$, 
-co zapiszemy w następującej postaci:
+Wartość oczekiwana jest  równa 0 dla każdego elementu wektora X, innymi słowy
 
 \begin{equation}
-\left \langle \mathbf{X} \right \rangle = \vec{0},
+\left \langle X \right \rangle = \vec{0},
 \end{equation} 
-a wariancja każdego elementu wektora będzie równa 1, co zapiszemy jako
+a wariancja każdego elementu wektora będzie równa 1, co można zapisać jako
 
 
 \begin{equation}
-\left \langle \mathbf{X} \cdot \mathbf{X}^T \right \rangle = I,
+\left \langle X \cdot X^T \right \rangle = I
 \end{equation} 
-gdzie $I$ oznacza macierz jednostkową. 
-
-Symbolem $\mathbf{Y}$ oznaczmy $n$-elementowy wektor zmiennych losowych $Y_i$, będących kombinacjami liniowymi
-zmiennych $X_i$, takich, że ich korelacja jest wyrażona przy pomocy macierzy kowariancji $\Sigma$. Mamy zatem:
+gdzie przez $I$ rozumie się macierz jednostkową. Symbolem $Y$ oznaczono $n$-elementowy wektor zmiennych losowych, których korelacja wyrażona została przy pomocy macierzy kowariancji $\Sigma$
 
 
 \begin{equation}\label{eq:yysigma}
-\left \langle \mathbf{Y} \cdot \mathbf{Y}^T \right \rangle = \Sigma.
+\left \langle Y \cdot Y^T \right \rangle = \Sigma.
 \end{equation} 
-Naszym zadaniem będzie znalezienie macierzy transformacji $C$ takiej, że spełniona jest równość
+Zadaniem jest znalezienie macierzy transformacji $C$ takiej, że spełniona jest równość
 
 \begin{equation}\label{eq:ycx}
-\mathbf{Y}=C \cdot \mathbf{X}.
+Y=C \cdot X.
 \end{equation} 
 W równaniu \eqref{eq:yysigma} można zastosować podstawienie \eqref{eq:ycx}. Wówczas
 
 \begin{equation}\label{eq:cct}
-\Sigma = \left \langle \mathbf{Y} \cdot \mathbf{Y}^T \right \rangle = \left \langle C \cdot \mathbf{X} \cdot (C \cdot \mathbf{X})^T \right \rangle =
-\left \langle C \cdot \mathbf{X} \cdot \mathbf{X}^T \cdot C^T \right \rangle =  C \cdot \left \langle \mathbf{X} \cdot \mathbf{X}^T \right \rangle \cdot C^T =
+\Sigma = \left \langle Y \cdot Y^T \right \rangle = \left \langle C \cdot X \cdot (C \cdot X)^T \right \rangle =
+\left \langle C \cdot X \cdot X^T \cdot C^T \right \rangle =  C \cdot \left \langle X \cdot X^T \right \rangle \cdot C^T =
 C \cdot I \cdot C^T = C \cdot C^T.
 \end{equation} 
-Należy zatem wyznaczyć macierz $C$ spełniającą równość $C \cdot C^T = \Sigma$. Takie równanie można rozwiązać m.in. algorytmem dekompozycji Choleskiego. Istnieje jednak inne, efektywne podejście. Opiera się ono na diagonalizacji macierzy kowariancji
-\begin{equation}
-\Sigma=P\Delta P^T, 
-\end{equation} 
-gdzie $\Delta $ to ..., a $P$ to ...
-\JL{dopisać brakujaca tresc}
-% np. tutaj jest o tym: https://en.wikipedia.org/wiki/Matrix_decomposition#Eigendecomposition
-Wówczas równanie przedstawia się następująco 
+Należy zatem wyznaczyć macierz $C$ spełniającą równość $C \cdot C^T = \Sigma$. Takie równanie można rozwiązać m.in. algorytmem dekompozycji Choleskiego. Istnieje jednak inne efektywne podejście. Opiera się ono na diagonalizacji macierzy kowariancji. Wówczas równanie przedstawia się następująco 
+
 \begin{equation}\label{eq:pdeltap}
 \Sigma=P\Delta P^T=P \Delta^{\frac{1}{2}} \Delta^{\frac{1}{2}} P^T \stackrel{*}{=}
 P   \Delta^{\frac{1}{2}}  (\Delta^{\frac{1}{2}})^T   P^T =
 P   \Delta^{\frac{1}{2}}  ( P   \Delta^{\frac{1}{2}} )^T.
 \end{equation} 
-W przejściu oznaczonym znakiem $(*)$ został wykorzystany fakt, że transponowana macierz diagonalna pozostaje tą samą macierzą. Porównując równania \eqref{eq:cct} oraz \eqref{eq:pdeltap} 
-%JL można dokonać podstawienia
-można zauważyć, że macierz $C$ może być wyliczona jako:
+W przejściu oznaczonym znakiem $(*)$ został wykorzystany fakt, że transponowana macierz diagonalna pozostaje tą samą macierzą. Porównując równania \eqref{eq:cct} oraz \eqref{eq:pdeltap} można dokonać podstawienia
+
+
 \begin{equation}\label{eq:cpdeltafrac}
 C  =P  \Delta^{\frac{1}{2}}.
 \end{equation} 
@@ -224,9 +203,7 @@ Istnieją trzy podstawowe metody obliczania $VaR$: metoda wariancji-kowariancji,
 \subsection{Metoda wariancji-kowariancji}
 
 
-Metoda wariancji-kowariancji jest najprostsza i 
-%JL posiada
-ma najmniejszą złożoność obliczeniową. Na początku przyjmowane jest założenie o normalności rozkładu zmian cen. Dodatkowo zakładane jest że średnia $\mu$ rozkładu zmian cen jest równa 0. Jest to tylko przybliżenie rzeczywistych rozkładów zmian cen, jednak w przypadku portfeli prostych, tj. niezawierających instrumentów pochodnych, jest to wystarczająco dobre przybliżenie. 
+Metoda wariancji-kowariancji jest najprostsza i posiada najmniejszą złożoność obliczeniową. Na początku przyjmowane jest założenie o normalności rozkładu zmian cen. Dodatkowo zakładane jest że średnia $\mu$ rozkładu zmian cen jest równa 0. Jest to tylko przybliżenie rzeczywistych rozkładów zmian cen, jednak w przypadku portfeli prostych, tj. niezawierających instrumentów pochodnych, jest to wystarczająco dobre przybliżenie. 
 
 Rozważania należy rozpocząć od portfela składającego się tylko z jednej pozycji, czyli zawierającego tylko jeden typ instrumentów finansowych. Ustalmy przedział czasowy pomiędzy badanymi zmianami cen $t=24h$. Niech $V$ oznacza wartość portfela inwestycyjnego, $\mu$ oznacza średnią rozkładu zmian cen, zaś $\sigma^{2}$ jest wariancją tego rozkładu. Funkcję odwrotnej dystrybuanty dla rozkładu normalnego definiujemy wzorem 
 
@@ -234,13 +211,10 @@ Rozważania należy rozpocząć od portfela składającego się tylko z jednej p
 
 
 \begin{equation} 
-\Phi_{\mu,\sigma^{2}}^{-1}(\alpha)=\mu+\sigma \sqrt{2} erf^{-1}(2\alpha-1),
+\Phi_{\mu,\sigma^{2}}^{-1}(\alpha)=\mu+\sigma \sqrt{2} erf^{-1}(2\alpha-1)
 \end{equation} 
-gdzie $erf^{-1}$ jest odwrotnością funkcji błędu zdefiniowanej jako:\JL{Podać tutaj wzór na $erf$ }
-$$erf(x) =  ...$$.
-
- Korzystając z początkowego założenia o zerowej średniej rozkładu mamy
-$$\Phi_{\mu=0,\sigma^{2}}^{-1}(\alpha)=\sigma \sqrt{2} erf^{-1}(2\alpha-1).$$
+gdzie $erf^{-1}$ jest odwrotnością funkcji błędu. Korzystając z początkowego założenia o zerowej średniej rozkładu mamy
+$$\Phi_{\mu=0,\sigma^{2}}^{-1}(\alpha)=\sigma \sqrt{2} erf^{-1}(2\alpha-1)$$
 
 
 
@@ -265,17 +239,9 @@ $$VaR_{\alpha}^{rel}   =\sigma \sqrt{2} erf^{-1}(2\alpha-1)=\sigma \cdot k$$
 z którego wynika że $VaR_{\alpha}^{rel}$ wyliczyć można korzystając z tablic kwantyli standardowego rozkładu normalnego. Dla $\alpha=0.05$ mamy $k=-1.645$. Odchylenie standardowe $\sigma=0.005532$. Zatem
 $$VaR_{\alpha}^{rel}=\sigma \cdot k= 0.005532 \cdot (-1.645)=-0.0091.$$
 
-
-
-Aby obliczyć bezwzględną wartość narażoną na ryzyko należy podać początkową wartość portfela. Niech
-\begin{equation}
-    V=10000\$
-\end{equation}
-będzie początkową wartością portfela. Bezwzględną $VaR$ obliczamy korzystając ze wzoru
+\noindent Bezwzględną wartość narażoną na ryzyko obliczamy korzystając ze wzoru
 $$VaR = V \cdot |VaR^{rel}|.$$
-
-\JL{Napisać czym jest $V=1000\$$ }
-Dla powyżej ustalonych parametrów otrzymamy otrzymamy $VaR = 10000\$ \cdot |-0.0091| = 91\$ $.
+Jeśli ustalimy $V=10000\$$ to otrzymamy $VaR = 10000\$ \cdot |-0.0091| = 91\$ $.
 
 Rozważmy teraz przypadek gdy w portfelu inwestycyjnym znajduje się więcej niż jedna pozycja. Weźmy portfel $n$-instrumentowy. Niech
 $$V=\begin{bmatrix}
@@ -284,33 +250,23 @@ $$V=\begin{bmatrix}
 \vdots \\
 v_n
 \end{bmatrix}$$
-będzie wersorem wartości kolejnych instrumentów w portfelu. Zaś niech
+będzie wektorem wartości kolejnych instrumentów w portfelu.
 
-$$X=\begin{bmatrix}
- X_1 \\ 
- X_2 \\
-\vdots \\
-X_n
-\end{bmatrix}$$
-będzie wektorem zmiennych losowych, w którym każdy element reprezentuje zmianę ceny każdej pozycji w portfelu. Iloczyn wektorów $V^T \cdot X$, czyli zmiana wartości całego portfela jest kombinacją liniową zmian wartości poszczególnych pozycji. Założyliśmy wcześniej, że rozkład zmian cen każdego instrumentu w portfelu jest rozkładem normalnym, ich kombinacja liniowa będzie zatem wielowymiarowym rozkładem normalnym. Wielowymiarowy rozkład normalny zadany jest wektorem wartości średnich rozkładów $\mu$ oraz kwadratową macierzą kowariancji $\Sigma$
-
+Założyliśmy wcześniej, że rozkład zmian cen każdego instrumentu w portfelu jest rozkładem normalnym. Ponadto zmiany te są wzajemnie ze sobą skorelowane. Zmiana wartości całego portfela jest kombinacją liniową zmian wartości poszczególny instrumentów, mamy więc do czynienia z wielowymiarowym rozkładem normalnym. Wielowymiarowy rozkład normalny zadany jest wektorem wartości średnich rozkładów $\mu$ oraz kwadratową macierzą kowariancji $\Sigma$
 $$\mu=\begin{bmatrix}
  \mu_1 \\ 
  \mu_2 \\
 \vdots \\
 \mu_n
-\end{bmatrix},
-\;\Sigma=\begin{bmatrix}
+\end{bmatrix},\Sigma=\begin{bmatrix}
 \sigma_{11} & \sigma_{12} & \hdots & \sigma_{1n} \\ 
 \sigma_{21} & \sigma_{22} & \hdots & \sigma_{2n} \\
 \vdots & \vdots & \ddots & \vdots\\
 \sigma_{n1} & \sigma_{n2} & \hdots & \sigma_{nn}
-\end{bmatrix}, $$
-gdzie 
-$\sigma_{ii} = ... $ oraz $\sigma_{ij} = ... $ dla $i\neq j$.
-\JL{uzpłenic powyzsze wzory}
+\end{bmatrix}. $$
 
-Ze względu na początkowe założenia wektor $\mu$ będzie tutaj wektorem zerowym. Korzystając ze wzoru na wariancję kombinacji liniowej zmiennych losowych otrzymujemy
+Ze względu na początkowe założenia wektor $\mu$ będzie tutaj wektorem zerowym. Korzystając z własności wielowymiarowego rozkładu normalnego możemy obliczyć wariancję rozkładu zmian wartości całego portfela 
+
 
 $$ \sigma_{Portfela}^2 = V^T  \cdot \Sigma \cdot V =  \begin{bmatrix}
  v_1 & v_2 & \hdots & v_n
@@ -329,17 +285,15 @@ $$ \sigma_{Portfela}^2 = V^T  \cdot \Sigma \cdot V =  \begin{bmatrix}
 \vdots \\
 v_n
 \end{bmatrix}
-=\sum_{i=1}^{n}\sum_{j=1}^{n}v_i v_j \sigma_{ij}.
+=\sum_{i=1}^{n}\sum_{j=1}^{n}w_i w_j \sigma_{ij}.
 $$
 
-\JL{Ważne: nie rozumiem powyższego wzor, nie jest podane czym są zmienne $w_i$ oraz $w_j$, 
-dlaczego pojawia się V?
-}
 
 Mając wyznaczoną wariancję zmian wartości całego portfela, traktujemy ten rozkład jako jednowymiarowy. Można zatem wyznaczyć $VaR^{rel}$
 $$VaR^{rel}=\sigma_{Portfela} \cdot k,$$
 a także bezwzględną $VaR$
 $$VaR = (\sum_{i=1}^{n}v_i) \cdot VaR^{rel}.$$.
+
 
 
 \subsection{Metoda symulacji historycznej}
@@ -353,21 +307,12 @@ Metoda symulacji historycznej nie zakłada normalności rozkładu zmian cen, w o
 \subsection{Metoda symulacji Monte Carlo}
 
 
-Od metody symulacji historycznej  metoda symulacji Monte Carlo różni się tym, że nie posiadamy szeregów zmian cen. Generujemy je za pomocą generatora liczb pseudolosowych. Zakładamy normalność rozkładów zmian cen dla każdego z instrumentów w portfelu. Implikuje to fakt, że rozkład wartości zmian cen dla całego portfela również będzie normalny, ponieważ zmiana wartości portfela jest kombinacją liniową wartości poszczególnych instrumentów. 
+Od metody symulacji historycznej  metoda symulacji Monte Carlo różni się tym, że nie posiadamy szeregów zmian cen. Generujemy je za pomocą generatora liczb pseudolosowych. Zakładamy normalność rozkładów zmian cen dla każdego z instrumentów portfelu. Implikuje to fakt, że rozkład wartości zmian cen dla całego portfela również będzie normalny, ponieważ zmiana wartości portfela jest kombinacją liniową wartości poszczególnych instrumentów. 
 
 %eeee wektor Y
-Załóżmy że w portfelu inwestycyjnym znajduje się $n$ różnych pozycji. Niech $X=\begin{bmatrix}
+Załóżmy że w portfelu inwestycyjnym znajduje się $n$ różnych pozycji.Niech $X=\begin{bmatrix}
  X_1 & X_2 & \hdots & X_n
-\end{bmatrix}^T $ będzie wektorem nieskorelowanych zmiennych losowych ze standardowego rozkładu normalnego. Ponadto, niech $\Sigma$ będzie macierzą kowariancji rozkładu zmian cen. 
-\JL{Poniżej troche pozmieniałem}
-Zakładamy, że macierz $\Sigma$ jest z góry znana.
-W praktyce $\Sigma$ często można przybliżyć na podstawie tych danych historycznych zmian cen, które są dostępne.
-Zauważmy, że macierz ta jest związana ze zmianami cen w pewnym okresie czasu, np. w ciągu doby.
-Jeśli będziemy chcieli przeprowadzać symulacje dotyczące dłuższego odcinka czasu, np. roku,
-będzie się to wiązało z  koniecznością przeprowadzenia wielu sekwencyjnych eksperymentów, 
-z których każdy będzie oparty na macierzy  $\Sigma$.
-  
-Niech $Y$ niech będzie wektorem zmiennych losowych o rozkładzie normalnym takim, że $\Sigma$ jest jego macierzą kowariancji. Aby wykonać symulację Monte Carlo, należy znaleźć macierz transformacji $C$, czyli macierz spełniającą równanie 
+\end{bmatrix}^T $ będzie wektorem nieskorelowanych zmiennych losowych ze standardowego rozkładu normalnego. Ponadto, niech $\Sigma$ będzie macierzą kowariancji rozkładu zmian cen, ustaloną na podstawie historycznych zmian cen, a $Y$ niech będzie takim wektorem zmiennym losowych o rozkładzie normalnym takim, że jego macierzą kowariancji jest $\Sigma$. Aby wykonać symulację Monte Carlo, należy znaleźć macierz transformacji $C$, czyli macierz spełniającą równanie 
 
 \begin{equation}
     Y=C \cdot X.
@@ -377,8 +322,7 @@ Metoda wyznaczania takiej macierzy przedstawiona jest w rozdziale \ref{mtransfor
 \begin{equation}
     C=P \cdot \Delta^{\frac{1}{2}}.
 \end{equation}
-%JL troche zmienilem ponizsze zdanie
-Macierze $P$ i $\Delta$ powstały jako efekt diagonalizacji macierzy $\Sigma$, tj. $\Sigma=P \cdot \Delta \cdot P^{-1}$, gdzie  $\Delta$ macierzą diagonalną, a $P$  jest macierzą, której kolumny $P_1, \hdots, P_n$ są wektorami własnymi macierzy $\Sigma$
+Macierze $P$ i $\Delta$ powstały jako efekt diagonalizacji macierzy $\Sigma$, tj. $\Sigma=P \cdot \Delta \cdot P^{-1}$, gdzie  $P$ jest macierzą przejścia, a $\Delta$ macierzą diagonalną. Jako że $P$ jest macierzą przejścia to możemy ją przedstawić jako macierz kolumnową, której kolumny $P_1, \hdots, P_n$ są wektorami własnymi macierzy $\Sigma$
 \begin{equation}
     P=\begin{bmatrix} P_1 & \vdots & P_2 & \vdots  & \hdots & \vdots & P_n \end{bmatrix}.
 \end{equation}
@@ -395,7 +339,7 @@ Algorytm zaczyna pracę od wygenerowania dla każdego instrumentu w portfelu sze
 
 
 \begin{equation} \label{eq:ynk}
-\mathbf{Y}(k)=
+Y(k)=
     \begin{bmatrix}
  Y_1(k) \\ 
 \vdots \\
@@ -421,16 +365,16 @@ X_n(k)
 X_n(k)
 \end{bmatrix}
 \end{equation}
-Wektor $\mathbf{Y}(k)$ nazywamy wektorem skorelowanych względnych zmian cen. Stosując wzory na mnożenie macierzy przy ustalonym wcześniej $k$, dla każdego $j \in \left \{1, \hdots, n \right \} $ mamy
+Wektor $Y(k)$ nazywamy wektorem skorelowanych względnych zmian cen. Stosując wzory na mnożenie macierzy przy ustalonym wcześniej $k$, dla każdego $j \in \left \{1, \hdots, n \right \} $ mamy
  
  
  \begin{equation}
      Y_j(k)=\sum_{i=1}^{n}P_i[j] \cdot \sqrt{\Delta_j}\cdot X_j(k).
  \end{equation}
-Zauważmy, że każdy wektor $\mathbf{Y}(k)$ można wyznaczyć niezależnie od pozostałych, co jest istotne z punktu widzenia przetwarzania w klastrze, ponieważ każdy węzeł klastra będzie mógł wyliczać wektory niezależnie, nie oczekując na pozostałe węzły. Choć ten fakt nie zostanie w praktyce wykorzystany - bo wówczas stopień rozproszenia obliczeń przyniósłby więcej strat niż korzyści - nawet pojedyncze elementy wektorów $\mathbf{Y}(k)$ można wyznaczać niezależnie.
+Zauważmy, że każdy wektor $Y(k)$ można wyznaczyć niezależnie od pozostałych, co jest istotne z punktu widzenia przetwarzania w klastrze, ponieważ każdy węzeł klastra będzie mógł wyliczać wektory niezależnie, nie oczekując na pozostałe węzły. Choć ten fakt nie zostanie w praktyce wykorzystany - bo wówczas stopień rozproszenia obliczeń przyniósłby więcej strat niż korzyści - nawet pojedyncze elementy wektorów $Y(k)$ można wyznaczać niezależnie.
 Zwróćmy jeszcze uwagę na złożoność obliczeniową takiej symulacji bez zagłębiania się w szczegóły implementacji klastra. Czas wykonywania takiej symulacji zależy od dwóch parametrów: liczby instrumentów w portfelu $n$ oraz liczby symulacji $m$. Zależność od liczby symulacji jest liniowa - jest do wyznaczenia dokładnie $m$ wektorów. Zaś od liczby instrumentów zależność jest kwadratowa - należy obliczyć $n$ elementów każdego wektora a w ramach obliczania każdego takiego elementu wylicza się sumę $n$-składnikową. Złożoność asymptotyczna wynosi zatem $O(m \cdot n^2)$.
 
-Znając wektor wartości początkowych $V$, oraz wektor skorelowanych względnych zmian cen $\mathbf{Y}(k)$ dla pewnego $k$, można wyliczyć całkowitą bezwzględną zmianę wartości portfela $z(k)$
+Znając wektor wartości początkowych $V$, oraz wektor skorelowanych względnych zmian cen $Y(k)$ dla pewnego $k$, można wyliczyć całkowitą bezwzględną zmianę wartości portfela $z(k)$
 \begin{equation} \label{eq:zk}
     z(k) = \begin{bmatrix}
  v_1 \\ 
@@ -443,7 +387,7 @@ v_n
   Y_2(k) \\
 \vdots \\
 Y_n(k)
-\end{bmatrix}.
+\end{bmatrix}
 \end{equation}
 Gdy $z(k)$ jest znane dla każdego $k \in \left \{1, \hdots, 10000 \right \} $ to aby wyznaczyć $VaR$ należy posortować szereg bezwzględnych zmian wartości $z(k)$ i znaleźć $\alpha$-kwantyl tego szeregu. Wartość bezwzględna tego $\alpha$-kwantyla to szukana $VaR$.
 
@@ -452,9 +396,9 @@ Gdy $z(k)$ jest znane dla każdego $k \in \left \{1, \hdots, 10000 \right \} $ t
 Warto wyjaśnić dlaczego właśnie system Akka będzie odpowiednim narzędziem do stworzenia takiego klastra. Akka, napisana w języku Scala opiera się na modelu aktorów stworzonym do obliczeń współbieżnych i rozproszonych. Aktorzy są podstawowymi jednostkami modelu aktorów. Ze względów bezpieczeństwa aktorzy nie komunikują się w inny sposób jak poprzez wysyłanie wiadomości. Po odebraniu wiadomości aktor może:
 
 \begin{itemize}
-  \item stworzyć  pewną liczbę nowych aktorów,
-	\item wysłać wiadomości do innych aktorów,
-	\item określić swoje zachowanie, gdy nadejdzie następna wiadomość.
+  \item stworzyć skończoną liczbę nowych aktorów,
+	\item wysłać skończoną liczbę wiadomości do innych aktorów,
+	\item zdeterminować swoje zachowanie gdy nadejdzie następna wiadomość.
 
 \end{itemize}
 Tylko te trzy możliwości wydają się być ograniczające, jednak ta prostota zapewnia bezpieczeństwo i łatwość tworzenia aplikacji. 
@@ -481,14 +425,12 @@ W systemie \textit{Akka} aktorzy zdefiniowani są przy pomocy klas. Przy impleme
 Tworzony jest jako pierwszy aktor w całym systemie. Jego głównym zadaniem jest nasłuchiwanie postępu prac pozostałych aktorów oraz komunikatów o ich ewentualnych awarii.
 
 \subsubsection{Aktor \textit{Master}}
-Tuż po \textit{Listenerze} powoływany do życia jest aktor typu \textit{Master}. Możliwe jest zadanie \textit{Masterowi} zapytania przez użytkownika systemu, jak na przykład wyliczanie $VaR$ ze zwiększoną precyzją (standardowa precyzja to 10000 symulacji dla portfela), ewentualnie zmniejszenie precyzji w celu szybkiego uzyskania wyniku.
+Tuż po \textit{Listenerze} powoływany do życia jest aktor typu \textit{Master}. Możliwe jest zadanie \textit{Masterowi} zapytania przez użytkownika systemu, jak na przykład wyliczanie $VaR$ ze zwiększoną precyzją (standardowa precyzja to 10000 symulacji dla portfela), ewentualnie zmniejszenie precyzji w celu szybkiego uzyskania
+wyniku.
 
-\textit{Master} wysyła wiadomość z parametrami portfela (obiekt $INPUT$) do pośrednika (klasa \textit{Forwarder}). 
-Dodatkowo cyklicznie, w odstępach 5-sekundowych wysyła do pośrednika wiadomość z zapytaniem o aktualny postęp prac - obiekt $CHECK\_PROGRESS$
+\textit{Master} wysyła wiadomość z parametrami do pośrednika (klasa \textit{Forwarder}). Warto nadmienić, że wysyłając tę wiadomość Master korzysta z konstrukcji \textit{ask()}. Wysyłana jest wiadomość, ponadto tworzony jest obiekt typu \textit{Future}, który jest reprezentacją odpowiedzi adresata. \textit{Future} pozwala nam operować na potencjalnych odpowiedziach które jeszcze nie nadeszły. Dzięki temu można zaimplementować przetwarzanie potokowe (ang. pipeline processing), ponieważ na obiekcie \textit{Future} można przeprowadzać obliczenia,
+zarówno funkcjami nazwanymi jak i anonimowymi. W tym konkretnym przypadku mapujemy (używając klasy \textit{Mapper}) obiekt reprezentujący portfel z parametrami na obiekt będący wynikiem dotychczasowych prac aktorów – który następnie trafia do \textit{Listenera}.
 
-
-Warto nadmienić, że wysyłając tę wiadomość Master korzysta z konstrukcji \textit{ask()}. Przy wysyłaniu wiadomości tworzony jest obiekt typu \textit{Future}, który jest reprezentacją odpowiedzi adresata. \textit{Future} pozwala nam operować na potencjalnych odpowiedziach które jeszcze nie nadeszły. Na obiekcie \textit{Future} można przeprowadzać obliczenia,
-zarówno funkcjami nazwanymi jak i anonimowymi. W tym konkretnym przypadku mapujemy (używając klasy \textit{Mapper}) obiekt reprezentujący portfel z parametrami na obiekt będący wynikiem dotychczasowych prac aktorów. Dzięki użyciu obiektu \textit{Future} możliwe jest przetwarzanie potokowe (ang. \textit{pipeline processing}). W tym konkretnym przypadku wiadomość $CHECK\_PROGRESS$ po dojściu do magazynu wyników (\textit{Storage}) jest przetwarzana do obiektu $PROGRESS$ a następnie przekierowywana do \textit{Listenera}.
 
 \subsubsection{Aktor \textit{Forwarder}}
 Pośrednik po otrzymaniu portfela, w zależności od tego czy aktorzy klasy \textit{Worker} są już dostępni, decyduje o rozdzielaniu porcji, czyli dobieraniu liczby symulacji przypadającej na jednego aktora klasy \textit{Worker}.
@@ -504,22 +446,8 @@ wpływu na pracę pozostałych. Uszkodzony aktor zostaje zatrzymany przez
 obserwatora, a następnie obserwator tworzy nowego aktora, który otrzymuje to
 samo zadanie któremu poprzedni aktor potomny nie podołał.
 
-\textit{Worker} ma za zadanie na podstawie portfela i jego parametrów wyliczyć odpowiednią ilość bezwzględnych zmian cen portfela $z(k)$ - wg. równania \eqref{eq:zk}. Porcja szeregu bezwzględnych zmian wartości portfela zostaje następnie wysłana do aktora \textit{Storage}.
+\textit{Worker} ma za zadanie na podstawie portfela i jego parametrów wyliczyć odpowiednią ilość całkowitych zmian wartości portfela $z(k)$ - wg. równania \eqref{eq:zk}.
 
-
-
-
-\subsubsection{Aktor \textit{Storage}}
-Aktor \textit{Storage} jest magazynem wyników, oznacza to że przyjmuje on wiadomości od aktorów klasy \textit{Worker}, a następnie dane umieszcza w lokalnej tablicy haszującej. Wiadomości od \textit{Workerów} to obiekty $DB\_SAVE$.
-
-Ponadto aktor \textit{Storage} otrzymać może wiadomość $DB\_LOAD$ od aktora \textit{Forwarder}, wówczas wiadomością zwrotną będzie obiekt $DB\_ENTRY$.
-
-
-
-Po otrzymaniu wiadomości $CHECK\_PROGRESS$ obliczany jest postęp prac. Jeśli wszystkie porcje szeregu bezwzględnych zmian cen są już dostępne, można przystąpić do wyznaczania $VaR$. Szereg zmian cen musi zostać posortowany. Najbardziej odpowiednim algorytmem jest tutaj
-
-
-a następnie \textit{Storage} odsyła wiadomość $PROGRESS$ do \textit{Listenera}, która jest postępem. prac wyrażonym w $\%$ lub samą wartością $VaR$ jeśli wszystkie symulacje zostały już przeprowadzone.
 
 
 
@@ -535,7 +463,6 @@ a następnie \textit{Storage} odsyła wiadomość $PROGRESS$ do \textit{Listener
 \bibliographystyle{plain}
 
 \bibliography{P2P}
-\JL{dorzuciłbym jeszcze do literatury dokumentację Akka}
 Philip Best, Wartość narażona na ryzyko, tłum. Andrzej Komański,
 \\
 Kraków 2000 ISBN: 82-88597-01-9.
